@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    /* Colores principales */
+    --color-primario: #BFD8B7; /* Verde salvia */
+    /* Uso: Botones principales, encabezados destacados, íconos importantes. */
+  
+    --color-secundario: #F2D7D5; /* Rosa empolvado */
+    /* Uso: Fondos secundarios, botones secundarios, detalles decorativos. */
+  
+    --color-acento: #E4BFA6; /* Terracota claro */
+    /* Uso: Hover de botones, enlaces activos, bordes destacados. */
+  
+    /* Colores de fondo */
+    --color-fondo-principal: #FDF7F2; /* Blanco hueso */
+    /* Uso: Fondo general de la página para mantener limpieza visual. */
+  
+    --color-fondo-secundario: #F5E7D3; /* Beige claro */
+    /* Uso: Fondo de secciones diferenciadas, cards de producto, áreas secundarias. */
+  
+    /* Colores de texto */
+    --color-texto-principal: #8A7366; /* Marrón suave */
+    /* Uso: Títulos principales, encabezados importantes. */
+  
+    --color-texto-secundario: #BFD8B7; /* Verde salvia */
+    /* Uso: Subtítulos, descripciones de productos, etiquetas. */
+  
+    --color-texto-contraste: #FFFFFF; /* Blanco */
+    /* Uso: Texto en botones, texto sobre fondos oscuros o llamativos. */
+  
+    /* Colores para botones */
+    --color-boton: #BFD8B7; /* Verde salvia */
+    /* Uso: Fondo de botones principales. */
+  
+    --color-boton-hover: #E4BFA6; /* Terracota claro */
+    /* Uso: Color de hover para botones y enlaces. */
+  
+    --color-boton-secundario: #F2D7D5; /* Rosa empolvado */
+    /* Uso: Botones secundarios o menos prominentes. */
+  
+    /* Bordes y detalles */
+    --color-borde: #BFD8B7; /* Verde salvia */
+    /* Uso: Bordes de cards, separadores o contenedores. */
+  
+    --color-hover-borde: #E4BFA6; /* Terracota claro */
+    /* Uso: Bordes de hover en botones o elementos interactivos. */
+  }
+  
+  
+  
+  body{
+    background-color: var(--color-fondo-principal);
+  }
+
+.navbar-class{
+    background-color: var(--color-secundario);
+    box-shadow:  0px 2px 4px rgba(138, 115, 102, 0.15);
+}
+
+.navbar-li:hover{
+    color: var(--color-boton-hover);
+}
+
+/* .navbar-logo{
+    color: var(--color-boton-hover);
+} */
+
+.product-detail{
+    width: 500px;
+    height: calc(100vh - 68px);
+    top: 68px;
+}
+
+.checkout-side-menu{
+    width: 500px;
+    height: calc(100vh - 68px);
+    top: 68px;
+}
