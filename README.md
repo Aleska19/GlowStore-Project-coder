@@ -9,28 +9,28 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 =======
 # GlowStore
-🌿 E-commerce de Productos Ecológicos Femeninos
+# * 🌿 E-commerce de Productos Ecológicos Femeninos*
 
 
-🛍️ Descripción
+### 🛍️ Descripción
 Un e-commerce dedicado a mujeres que buscan productos ecológicos, sostenibles y elegantes. Este sitio combina funcionalidad, diseño moderno y un enfoque en la preservación del medio ambiente.
 
-💡 Características principales:
+### 💡 Características principales:
 
-Catálogo diverso de productos ecológicos, como muebles, peines y más.
+- Catálogo diverso de productos ecológicos, como muebles, peines y más.
 Diseño moderno y femenino, inspirado en una paleta de colores suaves y naturales.
-Búsqueda eficiente para encontrar productos fácilmente.
-Componentes interactivos y responsivos para una experiencia fluida en cualquier dispositivo.
+- Búsqueda eficiente para encontrar productos fácilmente.
+- Componentes interactivos y responsivos para una experiencia fluida en cualquier dispositivo.
 
-🚀 Tecnologías Utilizadas
-React.js: Para construir una interfaz dinámica y modular.
-Tailwind CSS: Para un diseño responsivo, moderno y personalizable.
-CSS: Para estilos adicionales y personalizaciones específicas.
-Librerías de React: Herramientas para formularios, carruseles y funcionalidades avanzadas.
+### 🚀 Tecnologías Utilizadas
+- React.js: Para construir una interfaz dinámica y modular.
+- Tailwind CSS: Para un diseño responsivo, moderno y personalizable.
+- CSS: Para estilos adicionales y personalizaciones específicas.
+- Librerías de React: Herramientas para formularios, carruseles y funcionalidades avanzadas.
+- Vite.js
 
 
-🌟 Contacto
-¿Tienes preguntas o sugerencias? Contáctame en:
-📧 Email: aleskacrf@gmail.com
-🔗 LinkedIn: 
+### 🌟 Contacto
+- 📧 Email: aleskacrf@gmail.com
+- 🔗 LinkedIn: 
 >>>>>>> 9ec5465afbc4aade9289eb960e69125133a9f6dd
