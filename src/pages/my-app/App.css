@@ -9,6 +9,9 @@
   
     --color-secundario: #F2D7D5; /* Rosa empolvado */
     /* Uso: Fondos secundarios, botones secundarios, detalles decorativos. */
+
+        --color-acento: #E4BFA6; /* Terracota claro */
+    /* Uso: Hover de botones, enlaces activos, bordes destacados. */
   
     --color-acento: #E4BFA6; /* Terracota claro */
     /* Uso: Hover de botones, enlaces activos, bordes destacados. */
