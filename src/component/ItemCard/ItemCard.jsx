@@ -11,7 +11,7 @@ const ItemCard = (data) =>{
         context.setProductToShow(productDetail)
     }
 
-    const addProductsToCart = (event, productData) =>{
+    const addproductsToCart = (event, productData) =>{
         event.stopPropagation()
         context.setCount(context.count + 1)
         context.setCartProducts([...context.cartProducts, productData])
@@ -25,7 +25,7 @@ const renderIcon = () =>{
     if (isInCart){
         return(
 
-            <div className='absolute top-0 right-0 flex justify-center items-center w-6 h-6 rounded-full m-2 p-1 bg-verdeSavia' onClick={(event) => addProductsToCart(event, data.data)}>
+            <div className='absolute top-0 right-0 flex justify-center items-center w-6 h-6 rounded-full m-2 p-1 bg-verdeSavia' onClick={(event) => addproductsToCart(event, data.data)}>
              <CheckIcon className="h-6 w-6 text-marronSuave"></CheckIcon>
             </div>
             
@@ -33,7 +33,7 @@ const renderIcon = () =>{
     } else {
         return(
 
-            <div className='absolute top-0 right-0 flex justify-center items-center w-6 h-6 rounded-full m-2 p-1 bg-rosaEmpolvado' onClick={(event) => addProductsToCart(event, data.data)}>
+            <div className='absolute top-0 right-0 flex justify-center items-center w-6 h-6 rounded-full m-2 p-1 bg-rosaEmpolvado' onClick={(event) => addproductsToCart(event, data.data)}>
              <PlusIcon className="h-6 w-6 text-marronSuave"></PlusIcon>
             </div>
         )

@@ -7,7 +7,7 @@ const CartWidget = () => {
     return(
         <div className="flex items-center">
             <ShoppingBagIcon className="h-6 w-6 text-marronSuave/100"></ShoppingBagIcon>
-            <p>{context.count}</p>
+            <p>{context.cartProducts.length}</p>
         </div>
     )
 };

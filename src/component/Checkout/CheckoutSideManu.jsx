@@ -11,8 +11,8 @@ const CheckoutSideMenu = () => {
     const context = useContext(ShoppingCartContext)
 
     const handDelete = (id) =>{
-        const filteredProducts = context.cartProducts.filter(product => product.id !== id)
-        context.setCartProducts(filteredProducts)
+        const filteredproducts = context.cartProducts.filter(product => product.id !== id)
+        context.setCartProducts(filteredproducts)
     }
 
     const handleCheckout = () =>{
@@ -23,6 +23,7 @@ const CheckoutSideMenu = () => {
         }
         context.setOrder([...context.order, orderToAdd])
         context.setCartProducts([])
+        context.setSearchByTitle(null)
     }
     return(
         <aside className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu flex-col fixed right-0 border border-marronSuave rounded-lg bg-white`}>

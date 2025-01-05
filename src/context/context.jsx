@@ -28,26 +28,71 @@ export const ShoppingCartProvider = ({children}) => {
     //Shopping Cart / order
     const [order, setOrder] = useState([])
 
-    //Get Product and loading
-    const [Products, setProducts] = useState(null); //guardar los productos//
-    const [Loading, setLoading] = useState(true); //estado para manejar el estado de carga
+    //Get Product and loading and filter
+    const [products, setproducts] = useState([]); //guardar los productos//
+    const [loading, setloading] = useState(true); //estado para manejar el estado de carga
+    const [filteredProducts, setFilteredProducts] = useState(null);
+
+    //Get product by title and category
+
+
+    const [searchByTitle, setSearchByTitle] = useState(null); //estado para manejar la busqueda por titulo de producto
+    const [searchByCategory, setSearchByCategory] = useState(null); //estado para manejar la busqueda por titulo de producto
 
         useEffect(()=>{
-            const fetchProducts = async () => {
+            const fetchproducts = async () => {
                 try{
                     const response = await fetch(`${apiUrl}/products`); //Solicitud HTTP GET
                     const data = await response.json(); //convertir respuesta a JSON 
-                    setProducts(data); //guardar datos en el estado
+                    setproducts(data); //guardar datos en el estado
                 } catch (error){
                     console.error('Error al obtener los productos', error);
                 }finally {
                     setTimeout(() => {
-                        setLoading(false); 
+                        setloading(false); 
                     }, 2000)
                 }
             };
-            fetchProducts()
+            fetchproducts()
         }, []);
+
+
+        //filtrados de productos por titulo y categoria
+
+
+        const filteredProductsByTitle = (products, searchByTitle) =>{
+                return products?.filter(product => product.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+
+        }
+
+        const filteredProductsByCategory = (products, searchByCategory) =>{
+            return products?.filter(product => product.category.name.toLowerCase().includes(searchByCategory.toLowerCase()))
+        }
+
+        const filterBy = (searchType, products, searchByTitle, searchByCategory) =>{
+            if(searchType === 'by_title'){
+                return filteredProductsByTitle(products, searchByTitle)
+            }
+            if(searchType === 'by_category'){
+                return filteredProductsByCategory(products, searchByCategory)
+            }
+            if(searchType === 'by_title_AND_category'){
+                return filteredProductsByCategory(products, searchByCategory).filter(product => product.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+            }
+            if(!searchType){
+                return products
+            }
+        }
+
+        useEffect(() => {
+            if (searchByTitle && searchByCategory) setFilteredProducts(filterBy('by_title_AND_category', products, searchByTitle, searchByCategory));
+            if (searchByTitle && !searchByCategory) setFilteredProducts(filterBy('by_title', products, searchByTitle, searchByCategory));
+            if (!searchByTitle && searchByCategory) setFilteredProducts(filterBy('by_category', products, searchByTitle, searchByCategory));
+            if (!searchByTitle && !searchByCategory) setFilteredProducts(filterBy(null , products, searchByTitle, searchByCategory));
+            
+        }, [products, searchByTitle, searchByCategory]);
+
+        
 
     return(
         <ShoppingCartContext.Provider value={{
@@ -65,10 +110,15 @@ export const ShoppingCartProvider = ({children}) => {
             closeCheckoutSideMenu,
             order,
             setOrder,
-            Products,
-            setProducts,
-            Loading,
-            setLoading,
+            products,
+            setproducts,
+            loading,
+            setloading,
+            searchByTitle,
+            setSearchByTitle,
+            filteredProducts,
+            searchByCategory,
+            setSearchByCategory,
 
         }}>
             {children}

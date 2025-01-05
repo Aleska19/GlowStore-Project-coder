@@ -4,13 +4,28 @@ import { ShoppingCartContext } from "../../context/context"
 
 
 
-const ItemListContainer = ({Products})=>{
+function ItemListContainer () {
     const context = useContext(ShoppingCartContext)
+
+    const renderView = () =>{
+            if (context.filteredProducts?.length > 0){
+                return (
+                    context.filteredProducts?.map(product => (
+                        <ItemCard key={product.id} data={product} />
+                    ))
+                );
+            } else{
+                return(
+                    <h1>No encontramos ese producto☹️</h1>
+                );
+            }
+    };
+
+
     return(
-           
-        context.Products.map((product) => (
-            <ItemCard key={product.id} data={product} />
-        ))
-    )
+        <>
+            {renderView()}
+        </>
+    );
 }
 export default ItemListContainer

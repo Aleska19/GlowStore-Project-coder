@@ -16,7 +16,7 @@ function MyOrders() {
                 <Link key={index} to={`/my-orders/${index}`}>
                     <OrdersCard
                         totalPrice={order.totalPrice || order.total} // Asegúrate de que el campo totalPrice o total exista
-                        totalProducts={order.totalProducts || order.products.length} // Asegúrate de que el campo totalProducts o products exista
+                        totalproducts={order.totalproducts || order.products.length} // Asegúrate de que el campo totalproducts o products exista
                     />
                 </Link>
             ))}
