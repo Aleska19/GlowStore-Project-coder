@@ -49,7 +49,7 @@ const renderIcon = () =>{
         <div className=' cursor-pointer w-60 h-80 rounded-lg  p-6 shadow-md shadow-terracota-500/50 border-solid border border-terracota bg-white' 
         onClick={() => showProduct(data.data)} >
             <figure className='relative mb-2 w-full h-4/5'>
-                <span className='absolute bottom-0 left-0 bg-white/60 rounded-lg text-black text-xs m-2 px-3 py-0.5'>{data.data.category.name}</span>
+                <span className='absolute bottom-0 left-0 rounded-lg text-black text-xs m-2 px-3 py-0.5 bg-verdeSavia/80'>{data.data.category}</span>
                 <img className='w-full h-full object-cover rounded-lg' src={data.data.images[0]} alt="headphone" />
                 {renderIcon(data.data.id)}
             </figure>

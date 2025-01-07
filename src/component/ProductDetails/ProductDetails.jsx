@@ -21,8 +21,8 @@ const ProductDetail = () => {
             </figure>
             <p className="flex flex-col p-6 ">
                 <span className="font-medium text-2xl">${context.productToShow.price}</span>
-                <span className="font-medium text-md">${context.productToShow.title}</span>
-                <span className="font-medium text-sm">${context.productToShow.description}</span>
+                <span className="font-medium text-md">{context.productToShow.title}</span>
+                <span className="font-medium text-sm">{context.productToShow.description}</span>
             </p>
         </aside>
     )

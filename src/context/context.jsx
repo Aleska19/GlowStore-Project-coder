@@ -1,5 +1,7 @@
 import { createContext, useState, useEffect } from "react"
-import { apiUrl } from "../utils/Api/api"
+import { collection, getDocs } from "firebase/firestore"
+import { db } from "../firebase/config"
+// import { apiUrl } from "../utils/Api/api"
 
 export const ShoppingCartContext =  createContext()
 
@@ -39,22 +41,35 @@ export const ShoppingCartProvider = ({children}) => {
     const [searchByTitle, setSearchByTitle] = useState(null); //estado para manejar la busqueda por titulo de producto
     const [searchByCategory, setSearchByCategory] = useState(null); //estado para manejar la busqueda por titulo de producto
 
-        useEffect(()=>{
-            const fetchproducts = async () => {
-                try{
-                    const response = await fetch(`${apiUrl}/products`); //Solicitud HTTP GET
-                    const data = await response.json(); //convertir respuesta a JSON 
-                    setproducts(data); //guardar datos en el estado
-                } catch (error){
-                    console.error('Error al obtener los productos', error);
-                }finally {
-                    setTimeout(() => {
-                        setloading(false); 
-                    }, 2000)
-                }
-            };
-            fetchproducts()
-        }, []);
+        // useEffect(()=>{
+        //     const fetchproducts = async () => {
+        //         try{
+        //             const response = await fetch(`${apiUrl}/products`); //Solicitud HTTP GET
+        //             const data = await response.json(); //convertir respuesta a JSON 
+        //             setproducts(data); //guardar datos en el estado
+        //         } catch (error){
+        //             console.error('Error al obtener los productos', error);
+        //         }finally {
+        //             setTimeout(() => {
+        //                 setloading(false); 
+        //             }, 2000)
+        //         }
+        //     };
+        //     fetchproducts()
+        // }, []);
+
+        useEffect(() => {
+            const colletionProducts = collection(db, "products");
+            getDocs(colletionProducts)
+            .then((snapshot) =>{
+                setproducts(
+                    snapshot.docs.map((doc) => ({id: doc.id, ...doc.data()}))
+                )
+
+            })
+            .catch((error) => console.error('Error al obtener los productos', error))
+            .finally(setTimeout(() => { setloading(false); }, 2000))
+        },[]);
 
 
         //filtrados de productos por titulo y categoria
@@ -66,7 +81,7 @@ export const ShoppingCartProvider = ({children}) => {
         }
 
         const filteredProductsByCategory = (products, searchByCategory) =>{
-            return products?.filter(product => product.category.name.toLowerCase().includes(searchByCategory.toLowerCase()))
+            return products?.filter(product => product.category.toLowerCase().includes(searchByCategory.toLowerCase()))
         }
 
         const filterBy = (searchType, products, searchByTitle, searchByCategory) =>{

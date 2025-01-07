@@ -81,3 +81,14 @@
     height: calc(100vh - 68px);
     top: 68px;
 }
+
+.info_eco_estore{
+    background:  url(../../assets/img/background-home.jpg);
+
+}
+
+
+
+.info_eco_h1, .info_eco_h2{
+    
+}

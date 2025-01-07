@@ -1,5 +1,6 @@
 import { useRoutes} from 'react-router-dom';
 import Home from '../pages/home/Home'
+import Category from '../component/Category/Category';
 import MyAccount from '../pages/myAccount/MyAccount'
 import MyOrder from '../pages/myOrder/MyOrder';
 import MyOrders from '../pages/myOrders/MyOrders';
@@ -10,11 +11,11 @@ import Signin from '../pages/signin/Signin';
 const AppRoutes = () => {
     let routes = useRoutes([
         { path: '/', element: <Home /> },
-        { path: '/clothes', element: <Home /> },
-        { path: '/electronics', element: <Home /> },
-        { path: '/furnitures', element: <Home /> },
-        { path: '/toys', element: <Home /> },
-        { path: '/others', element: <Home /> },
+        { path: '/clothes', element: <Category /> },
+        { path: '/electronics', element: <Category /> },
+        { path: '/category/furnitures', element: <Category/> },
+        { path: '/toys', element: <Category /> },
+        { path: '/category/others', element: <Category/> },
         { path: '/my-Account', element: <MyAccount /> }, 
         { path: '/my-Order', element: <MyOrder /> }, 
         { path: '/my-Orders', element: <MyOrders /> },

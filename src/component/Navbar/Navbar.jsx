@@ -1,6 +1,9 @@
 import { useContext } from "react"
 import { NavLink } from "react-router-dom"
+import { ArchiveBoxIcon } from "@heroicons/react/16/solid"
+import {UserIcon} from "@heroicons/react/16/solid"
 import CartWidget from "../CartWidget/CartWidget"
+import Search from "../SearchProduct/Search"
 import { ShoppingCartContext } from "../../context/context"
 
 const Navbar = () => {
@@ -10,13 +13,16 @@ const Navbar = () => {
         <nav className="flex justify-between item-center fixed z-10 w-full py-5 px-8 text-sm font-light text-marronSuave top-0 navbar-class"> 
             <ul className="flex items-center gap-3">
                 <li className="font-semibold text-lg text-marronSuave/95 navbar-logo">
-                    <NavLink  to= '/' >
+                    <NavLink  
+                    to= '/' 
+                    onClick={()=> context.setSearchByCategory()}>
+                    
                         GlowStore
                     </NavLink>
                 </li>
                 <li className="navbar-li">
                     <NavLink 
-                    to= '/' 
+                    to= 'all' 
                     onClick={()=> context.setSearchByCategory()}
                     className={({ isActive}) =>
                         isActive ? activeStyle : undefined
@@ -49,7 +55,7 @@ const Navbar = () => {
                 </li>
                 <li className="navbar-li">
                     <NavLink
-                     to= '/furnitures' 
+                     to= '/category/furnitures' 
                      onClick={()=> context.setSearchByCategory('furniture')}
                      className={({ isActive}) =>
                         isActive ? activeStyle : undefined
@@ -71,7 +77,7 @@ const Navbar = () => {
                 </li>
                 <li className="navbar-li">
                     <NavLink
-                     to= '/others' 
+                     to= '/category/others' 
                      onClick={()=> context.setSearchByCategory('others')}
                      className={({ isActive}) =>
                         isActive ? activeStyle : undefined
@@ -81,6 +87,10 @@ const Navbar = () => {
                     </NavLink>
                 </li>
             </ul>
+
+            <div>
+                <Search/>
+            </div>
 
             <ul className="flex items-center gap-3">
                 <li className="text-gray-400">
@@ -93,19 +103,10 @@ const Navbar = () => {
                         isActive ? activeStyle : undefined
 
                     }>
-                        My Orders
+                        <ArchiveBoxIcon className="h-6 w-6 text-marronSuave/100"></ArchiveBoxIcon>
                     </NavLink>
                 </li>
-                <li>
-                    <NavLink
-                     to= '/my-Account' 
-                     className={({ isActive}) =>
-                        isActive ? activeStyle : undefined
 
-                    }>
-                        My Account
-                    </NavLink>
-                </li>
                 <li>
                     <NavLink 
                     to= '/sig-nin' 
@@ -113,7 +114,7 @@ const Navbar = () => {
                         isActive ? activeStyle : undefined
 
                     }>
-                        Sign In
+                        <UserIcon className="h-6 w-6 text-marronSuave/100"></UserIcon>
                     </NavLink>
                 </li>
                 <CartWidget/>

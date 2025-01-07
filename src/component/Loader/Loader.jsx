@@ -1,6 +1,6 @@
 const Loader = () => {
     return(
-        <div>
+        <div className="h-screen">
 
         <div className="w-3 h-3  rounded-full animate-bounce bg-marronSuave"></div>
   
