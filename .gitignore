@@ -25,4 +25,4 @@ dist-ssr
 
 # Archivo de configuración de Firebase
 src/firebase/config.js
-
+src/firebase/index.js
