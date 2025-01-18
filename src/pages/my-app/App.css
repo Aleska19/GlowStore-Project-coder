@@ -83,12 +83,30 @@
 }
 
 .info_eco_estore{
-    background:  url(../../assets/img/background-home.jpg);
+    /* background:  url(../../assets/img/background-home.jpg); */
+    width: 80rem;
 
+}
+
+.info_eco_estore img{
+    width: 80rem;
 }
 
 
 
 .info_eco_h1, .info_eco_h2{
     
+}
+
+.footer-section{
+    background: var(--color-fondo-secundario);
+}
+
+.background-about-me {
+    width: 60rem;
+    background: black;
+}
+
+.background-about-me img{
+    opacity: 50%;
 }

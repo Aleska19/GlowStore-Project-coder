@@ -6,6 +6,9 @@ import MyOrder from '../pages/myOrder/MyOrder';
 import MyOrders from '../pages/myOrders/MyOrders';
 import NotFound from '../pages/notFound/NotFound';
 import Signin from '../pages/signin/Signin';
+import AboutUs from '../pages/aboutUs/aboutUs';
+import Privacy from '../pages/privacy-policy/privacy';
+import PoliciesAndTerm from '../pages/policies-and-term/policiesAndTerm';
 
 
 const AppRoutes = () => {
@@ -23,6 +26,9 @@ const AppRoutes = () => {
         { path: '/my-Orders/:id', element: <MyOrder /> },
         { path: '/sig-nin', element: <Signin /> },
         { path: '/*', element: <NotFound /> },
+        { path: '/aboutUs', element: <AboutUs /> },
+        { path: '/privacy', element:<Privacy/>},
+        { path: '/policiesAndCondition', element: <PoliciesAndTerm/>}
       ])
     
       return routes 

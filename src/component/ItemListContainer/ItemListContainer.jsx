@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import ItemCard from "../ItemCard/ItemCard"
 import { ShoppingCartContext } from "../../context/context"
+import NotFound from "../../pages/notFound/NotFound";
 
 
 
@@ -16,7 +17,7 @@ function ItemListContainer () {
                 );
             } else{
                 return(
-                    <h1>No encontramos ese producto☹️</h1>
+                    <NotFound/>
                 );
             }
     };

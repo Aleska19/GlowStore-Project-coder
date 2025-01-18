@@ -1,7 +1,7 @@
 import { useContext, useState, useEffect } from "react";
 import Layout from "../../component/Layout/Layout";
 import Loader from "../../component/Loader/Loader";
-import ItemListContainer from "../../component/itemListContainer/ItemListContainer";
+import ItemListContainer from "../../component/ItemListContainer/ItemListContainer";
 import ProductDetail from "../../component/ProductDetails/ProductDetails";
 import { ShoppingCartContext } from "../../context/context"
 
@@ -10,11 +10,18 @@ function Home(){
     return (
 
         <Layout className="bg-red-100">
-          <div className="info_eco_estore flex flex-col items-center justify-center p-8 rounded-lg shadow-lg w-full h-60 bg-cover bg-center bg-no-repeat sm:bg-cover md-bg-cover bg-black bg-opacity-45 relative  ">
-            <h1 className="info_eco_h1 text-3xl font-serif text-marronSuave font-bold mb-2 z-0">Elegancia Sostenible</h1>
-            <h2 className="info_eco_h2 text-2xl font-sans text-gray-700">Para cada Bolsillo</h2>
+          
+            <div className="info_eco_estore flex flex-col items-center justify-center   sm:bg-cover md-bg-cover p-8 rounded-lg shadow-lg  relative  ">
+             <figure>
+              <img src="https://i.pinimg.com/736x/20/e1/b4/20e1b408856e9e884e4acb8b70aed449.jpg" alt="" className="h-96" />
+             </figure>
 
-          </div>
+             <div className="absolute">
+             <h1 className="info_eco_h1 text-3xl font-serif text-marronSuave font-bold mb-2 z-0">Elegancia Sostenible</h1>
+             <h2 className="info_eco_h2 text-2xl font-sans text-gray-700">Para cada Bolsillo</h2>
+             </div>
+
+            </div>
 
 
 
