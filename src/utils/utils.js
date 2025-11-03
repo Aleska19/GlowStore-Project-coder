@@ -1,5 +1,5 @@
 /**
- * This function calculate total price of a new order 
+ * This function calculate total price of a new Order 
  * @param {array} products cartProduct: array of objects
  * @returns {number} total price of all products 
  * 

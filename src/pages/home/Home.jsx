@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext} from "react";
 import Layout from "../../component/Layout/Layout";
 import Loader from "../../component/Loader/Loader";
 import ItemListContainer from "../../component/ItemListContainer/ItemListContainer";
@@ -6,7 +6,9 @@ import ProductDetail from "../../component/ProductDetails/ProductDetails";
 import { ShoppingCartContext } from "../../context/context"
 
 function Home(){
-    const {loading, products, setSearchByTitle} = useContext(ShoppingCartContext); //estado para manejar el estado de carga
+    const {loading, products} = useContext(ShoppingCartContext); //estado para manejar el estado de carga
+
+
     return (
 
         <Layout className="bg-red-100">
@@ -22,22 +24,22 @@ function Home(){
              </div>
 
             </div>
-
-
-
-
-
-          {loading ? (
-            // Loader envuelto en su propio div
-            <div className="flex items-center justify-center  space-x-2 z-0">
-              <Loader />
-            </div>
-          ) : (
-            // Div para ItemListContainer con grid
-            <div className="grid gap-4 grid-cols-4 w-full max-w-screen-lg pt-10">
-              <ItemListContainer products={products} />
-            </div>
-          )}
+            <section>
+              {loading ? (
+                <div className="flex items-center justify-center space-x-2 z-0">
+                  <Loader />
+                </div>
+              ) : (
+              <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full max-w-screen-lg pt-10">
+                 {console.log('Products:', products)}
+                 {products.length > 0 ? (
+                  <ItemListContainer Products={products} />
+                 ) : (
+                   <p>No hay productos disponibles</p>
+                )}
+              </div>
+             )}
+            </section>
           <ProductDetail/>
         </Layout>
       );

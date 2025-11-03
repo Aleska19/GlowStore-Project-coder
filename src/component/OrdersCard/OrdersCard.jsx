@@ -1,11 +1,17 @@
 import { ChevronRightIcon } from "@heroicons/react/16/solid"
+import PropTypes from "prop-types";
 
 
-const OrdersCard = props =>{
-    const {totalPrice, totalproducts} = props;
+
+
+const OrdersCard = (props) =>{
+    const {totalPrice, totalproducts} = props
+
+
+
 
     return(
-    <div className="flex justify-between items-center  mb-3 border-b border-terracota p-4 w-80">
+    <div className="flex justify-between items-center  mb-3 bOrder-b bOrder-terracota p-4 w-80">
         <div className="flex items-center gap-5 justify-between w-full">
             <p className="flex  flex-col gap-4" >
               <span className="text-marronSuave font-light text-md">Date: 25.12.24</span>
@@ -20,4 +26,13 @@ const OrdersCard = props =>{
     </div>
     );
 };
+
+// Prototypoe for type checking
+
+OrdersCard.propTypes = {
+  totalPrice: PropTypes.number.isRequired,
+  totalproducts: PropTypes.number.isRequired,
+};
+
+
 export default OrdersCard

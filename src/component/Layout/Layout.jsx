@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom"
 import Banner from "../Banner/Banner";
+import PropTypes from "prop-types";
 
 
 const Layout = ({children}) => {
@@ -11,5 +12,9 @@ const location = useLocation();
         </div>
     )
 }
+
+Layout.propTypes = {
+    children: PropTypes.node.isRequired,
+};
 
 export default Layout

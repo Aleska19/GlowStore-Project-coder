@@ -14,6 +14,7 @@ import PoliciesAndTerm from '../pages/policies-and-term/policiesAndTerm';
 const AppRoutes = () => {
     let routes = useRoutes([
         { path: '/', element: <Home /> },
+        { path: '/all', element: <Category/>},
         { path: '/clothes', element: <Category /> },
         { path: '/electronics', element: <Category /> },
         { path: '/category/furnitures', element: <Category/> },

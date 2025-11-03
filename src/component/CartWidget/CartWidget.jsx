@@ -6,8 +6,8 @@ const CartWidget = () => {
     const context = useContext(ShoppingCartContext)
     return(
         <div className="flex items-center">
-            <ShoppingBagIcon className="h-6 w-6 text-marronSuave/100"></ShoppingBagIcon>
-            <p>{context.cartProducts.length}</p>
+            <ShoppingBagIcon className="h-6 w-6 text-marronSuave/100 cursor-pointer" onClick={context.cartproducts}></ShoppingBagIcon>
+            <p>{context.cartproducts.length}</p>
         </div>
     )
 };

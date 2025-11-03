@@ -71,13 +71,13 @@
 } */
 
 .product-detail{
-    width: 500px;
+    /* width: 500px; */
     height: calc(100vh - 68px);
     top: 68px;
 }
 
 .checkout-side-menu{
-    width: 500px;
+    /* width: 500px; */
     height: calc(100vh - 68px);
     top: 68px;
 }

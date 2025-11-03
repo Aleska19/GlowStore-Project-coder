@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react"
-import { collection, getDocs } from "firebase/firestore"
+import { collection, getDocs} from "firebase/firestore"
 import { db } from "../firebase/config"
-// import { apiUrl } from "../utils/Api/api"
+
 
 export const ShoppingCartContext =  createContext()
 
@@ -9,58 +9,40 @@ export const ShoppingCartProvider = ({children}) => {
     //Shopping Cart | Increment quantity
     const[count, setCount] = useState(0)
 
-    //Prodcut Detail | Open Close
-    const [isProductDetailOpen, setIsProductDetailOpen] = useState(false)
-    const openProductDetail = () => setIsProductDetailOpen(true)
-    const closeProductDetail = () => setIsProductDetailOpen(false)
-
-    //Checkout side menu
-    
-    //Prodcut Detail | Open Close
-    const [isCheckoutSideMenuOpen, setIsCheckoutSideMenuOpen] = useState(false)
-    const openCheckoutSideMenu = () => setIsCheckoutSideMenuOpen(true)
-    const closeCheckoutSideMenu= () => setIsCheckoutSideMenuOpen(false)
-
-    //Product Detail | Show Product
-    const [productToShow, setProductToShow] = useState({})
-
     //Shopping Cart / add products to cart
-    const [cartProducts, setCartProducts] = useState([])
+    const [cartproducts, setCartproducts] = useState([])
+    
 
-    //Shopping Cart / order
-    const [order, setOrder] = useState([])
+   
 
     //Get Product and loading and filter
-    const [products, setproducts] = useState([]); //guardar los productos//
+    const [products, setproducts] = useState([
+     ]); //guardar los productos//
+
+     //Estado para manejar el estado de carga 
     const [loading, setloading] = useState(true); //estado para manejar el estado de carga
-    const [filteredProducts, setFilteredProducts] = useState(null);
+    const [filteredproducts, setFilteredproducts] = useState(null);
+    
 
     //Get product by title and category
 
 
     const [searchByTitle, setSearchByTitle] = useState(null); //estado para manejar la busqueda por titulo de producto
-    const [searchByCategory, setSearchByCategory] = useState(null); //estado para manejar la busqueda por titulo de producto
+    // 
+    const [searchByCategory, setSearchByCategory] = useState(
+        localStorage.getItem("selectedCategory") || null
+      ); //estado para manejar la busqueda por titulo de producto
 
-        // useEffect(()=>{
-        //     const fetchproducts = async () => {
-        //         try{
-        //             const response = await fetch(`${apiUrl}/products`); //Solicitud HTTP GET
-        //             const data = await response.json(); //convertir respuesta a JSON 
-        //             setproducts(data); //guardar datos en el estado
-        //         } catch (error){
-        //             console.error('Error al obtener los productos', error);
-        //         }finally {
-        //             setTimeout(() => {
-        //                 setloading(false); 
-        //             }, 2000)
-        //         }
-        //     };
-        //     fetchproducts()
-        // }, []);
+      useEffect(() => {
+        localStorage.setItem("selectedCategory", searchByCategory);
+      }, [searchByCategory]);
+
+      
+
 
         useEffect(() => {
-            const colletionProducts = collection(db, "products");
-            getDocs(colletionProducts)
+            const colletionproducts = collection(db, "products");
+            getDocs(colletionproducts)
             .then((snapshot) =>{
                 setproducts(
                     snapshot.docs.map((doc) => ({id: doc.id, ...doc.data()}))
@@ -70,29 +52,28 @@ export const ShoppingCartProvider = ({children}) => {
             .catch((error) => console.error('Error al obtener los productos', error))
             .finally(setTimeout(() => { setloading(false); }, 2000))
         },[]);
-
-
+        
         //filtrados de productos por titulo y categoria
 
 
-        const filteredProductsByTitle = (products, searchByTitle) =>{
+        const filteredproductsByTitle = (products, searchByTitle) =>{
                 return products?.filter(product => product.title.toLowerCase().includes(searchByTitle.toLowerCase()))
 
         }
 
-        const filteredProductsByCategory = (products, searchByCategory) =>{
-            return products?.filter(product => product.category.toLowerCase().includes(searchByCategory.toLowerCase()))
+        const filteredproductsByCategory = (products, searchByCategory) =>{
+                return products?.filter(product => product.category.toLowerCase().includes(searchByCategory.toLowerCase()))
         }
 
         const filterBy = (searchType, products, searchByTitle, searchByCategory) =>{
-            if(searchType === 'by_title'){
-                return filteredProductsByTitle(products, searchByTitle)
+            if(searchType === 'by_title'){ 
+                return filteredproductsByTitle(products, searchByTitle)
             }
             if(searchType === 'by_category'){
-                return filteredProductsByCategory(products, searchByCategory)
+                return filteredproductsByCategory(products, searchByCategory)
             }
             if(searchType === 'by_title_AND_category'){
-                return filteredProductsByCategory(products, searchByCategory).filter(product => product.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+                return filteredproductsByCategory(products, searchByCategory).filter(product => product.title.toLowerCase().includes(searchByTitle.toLowerCase()))
             }
             if(!searchType){
                 return products
@@ -100,10 +81,10 @@ export const ShoppingCartProvider = ({children}) => {
         }
 
         useEffect(() => {
-            if (searchByTitle && searchByCategory) setFilteredProducts(filterBy('by_title_AND_category', products, searchByTitle, searchByCategory));
-            if (searchByTitle && !searchByCategory) setFilteredProducts(filterBy('by_title', products, searchByTitle, searchByCategory));
-            if (!searchByTitle && searchByCategory) setFilteredProducts(filterBy('by_category', products, searchByTitle, searchByCategory));
-            if (!searchByTitle && !searchByCategory) setFilteredProducts(filterBy(null , products, searchByTitle, searchByCategory));
+            if (searchByTitle && searchByCategory) setFilteredproducts(filterBy('by_title_AND_category', products, searchByTitle, searchByCategory));
+            if (searchByTitle && !searchByCategory) setFilteredproducts(filterBy('by_title', products, searchByTitle, searchByCategory));
+            if (!searchByTitle && searchByCategory) setFilteredproducts(filterBy('by_category', products, searchByTitle, searchByCategory));
+            if (!searchByTitle && !searchByCategory) setFilteredproducts(filterBy(null , products, searchByTitle, searchByCategory));
             
         }, [products, searchByTitle, searchByCategory]);
 
@@ -113,27 +94,19 @@ export const ShoppingCartProvider = ({children}) => {
         <ShoppingCartContext.Provider value={{
             count,
             setCount,
-            openProductDetail,
-            closeProductDetail,
-            isProductDetailOpen,
-            productToShow,
-            setProductToShow,
-            cartProducts,
-            setCartProducts,
-            isCheckoutSideMenuOpen,
-            openCheckoutSideMenu,
-            closeCheckoutSideMenu,
-            order,
-            setOrder,
+            cartproducts,
+            setCartproducts,
             products,
+            
             setproducts,
             loading,
             setloading,
             searchByTitle,
             setSearchByTitle,
-            filteredProducts,
+            filteredproducts,
             searchByCategory,
             setSearchByCategory,
+            
 
         }}>
             {children}

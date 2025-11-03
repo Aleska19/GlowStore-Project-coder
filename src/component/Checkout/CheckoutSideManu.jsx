@@ -1,41 +1,47 @@
 import { useContext } from "react"
 import { Link } from "react-router-dom"
-import { ShoppingCartContext } from "../../context/context"
+import { ShoppingCartContext } from "../../context/context.jsx"
+import { CheckoutMenuContext } from "../../context/checkoutMenuContext.jsx"
+import { OrderContext } from "../../context/orderContext.jsx"
 import { XCircleIcon } from "@heroicons/react/16/solid"
 import {totalPrice} from '../../utils/utils'
 import OrderCard from "../OrderCard/OrderCard"
 
 
 
+
+
 const CheckoutSideMenu = () => {
-    const context = useContext(ShoppingCartContext)
+    const shopingCartContext = useContext(ShoppingCartContext)
+    const checkoutMenuContext = useContext(CheckoutMenuContext)
+    const orderContext = useContext(OrderContext)
 
     const handDelete = (id) =>{
-        const filteredproducts = context.cartProducts.filter(product => product.id !== id)
-        context.setCartProducts(filteredproducts)
+        const filteredproducts = shopingCartContext.cartproducts.filter(product => product.id !== id)
+        shopingCartContext.setCartproducts(filteredproducts)
     }
 
     const handleCheckout = () =>{
-        const orderToAdd = {
+        const OrderToAdd = {
             date: '24.12.2024',
-            products: context.cartProducts,
-            total: totalPrice(context.cartProducts)
+            products: shopingCartContext.cartproducts,
+            total: totalPrice(shopingCartContext.cartproducts)
         }
-        context.setOrder([...context.order, orderToAdd])
-        context.setCartProducts([])
-        context.setSearchByTitle(null)
+        orderContext.setOrder([...orderContext.Order, OrderToAdd])
+        shopingCartContext.setCartproducts([])
+        shopingCartContext.setSearchByTitle(null)
     };
 
-    console.log("Cart Products:", context.cartProducts);
-    console.log("Total Price:", totalPrice(context.cartProducts));
+    console.log("Cart products:", shopingCartContext.cartproducts);
+    console.log("Total Price:", totalPrice(shopingCartContext.cartproducts));
 
 
 
     return(
-        <aside className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu flex-col fixed right-0 border border-marronSuave rounded-lg bg-white`}>
+        <aside className={`${checkoutMenuContext.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} checkout-side-menu flex-col fixed right-0 bOrder bOrder-marronSuave rounded-lg bg-white w-full lg:w-1/3 md:w-1/2 xl:w-1/3`}>
             <div className="flex justify-between items-center p-6 ">
                 <h2 className="font-medium text-xl text-marronSuave">My Order</h2>
-                <div onClick={context.closeCheckoutSideMenu}>
+                <div onClick={checkoutMenuContext.closeCheckoutSideMenu}>
                     <XCircleIcon 
                     className="h-6 w-6 text-verdeSavia cursor-pointer"></XCircleIcon>
                 </div>
@@ -44,7 +50,7 @@ const CheckoutSideMenu = () => {
 
             <div className="px-6 overflow-y-scroll flex-1">
              {
-                context.cartProducts.map(product =>(
+                shopingCartContext.cartproducts.map(product =>(
                     <OrderCard 
                     key={product.id}
                     id={product.id}
@@ -60,9 +66,9 @@ const CheckoutSideMenu = () => {
             <div className="px-6 py-4">
                 <p className=" flex justify-between items-center text-xl  text-marronSuave mb-2">
                     <span className="font-light">TOTAL:</span>
-                    <span className="font-medium">${totalPrice(context.cartProducts)}</span>
+                    <span className="font-medium">${totalPrice(shopingCartContext.cartproducts)}</span>
                 </p>
-                <Link to={'/my-orders/last'}>
+                <Link to={'/my-Orders/last'}>
                     <button className="w-full bg-marronSuave  py-3 text-white rounded-lg" onClick={() => handleCheckout()}>Checkout</button>
                 </Link>
                 
