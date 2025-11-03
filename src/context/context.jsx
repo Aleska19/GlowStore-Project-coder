@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react"
 import { collection, getDocs} from "firebase/firestore"
 import { db } from "../firebase/config"
+import PropTypes from 'prop-types'
 
 
 export const ShoppingCartContext =  createContext()
@@ -51,7 +52,9 @@ export const ShoppingCartProvider = ({children}) => {
             })
             .catch((error) => console.error('Error al obtener los productos', error))
             .finally(setTimeout(() => { setloading(false); }, 2000))
+            
         },[]);
+
         
         //filtrados de productos por titulo y categoria
 
@@ -112,4 +115,8 @@ export const ShoppingCartProvider = ({children}) => {
             {children}
         </ShoppingCartContext.Provider>
     )
+}
+
+ShoppingCartProvider.propTypes = {
+    children: PropTypes.node.isRequired
 }
