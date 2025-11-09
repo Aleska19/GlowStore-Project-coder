@@ -24,5 +24,6 @@ dist-ssr
 *.sw?
 
 # Archivo de configuración de Firebase
+.env
 src/firebase/config.js
 src/firebase/index.js
